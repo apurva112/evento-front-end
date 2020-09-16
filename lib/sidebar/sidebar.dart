@@ -1,7 +1,9 @@
 import 'dart:async';
 
+import 'package:evento/bloc.navigation_bloc/navigation_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
+import 'package:flutter_bloc/flutter_bloc.dart';
 import 'package:rxdart/rxdart.dart';
 
 import 'menu_item.dart';
@@ -80,13 +82,13 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                       ListTile(
                         title: Text(
                           "Teja Don",
-                          style: TextStyle(color: Colors.white, fontSize: 30, fontWeight: FontWeight.w800),
+                          style: TextStyle(color: Colors.white, fontSize: 25, fontWeight: FontWeight.w800),
                         ),
                         subtitle: Text(
                           "www.MeanMachiNe.com",
                           style: TextStyle(
                             color: Color(0xFF1BB5FD),
-                            fontSize: 18,
+                            fontSize: 13,
                           ),
                         ),
                         leading: CircleAvatar(
@@ -109,7 +111,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                         title: "Home",
                         onTap: () {
                           onIconPressed();
-                          //BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.HomePageClickedEvent);
+                          BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.HomePageClickedEvent);
                         },
                       ),
                       MenuItem(
@@ -117,7 +119,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                         title: "My Account",
                         onTap: () {
                           onIconPressed();
-                          //BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyAccountClickedEvent);
+                          BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyAccountClickedEvent);
                         },
                       ),
                       MenuItem(
@@ -125,7 +127,7 @@ class _SideBarState extends State<SideBar> with SingleTickerProviderStateMixin<S
                         title: "Previous Successful",
                         onTap: () {
                           onIconPressed();
-                          //BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.MyOrdersClickedEvent);
+                          BlocProvider.of<NavigationBloc>(context).add(NavigationEvents.SuggestionsClickedEvent);
                         },
                       ),
                       MenuItem(

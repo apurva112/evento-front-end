@@ -1,9 +1,10 @@
+import 'package:evento/bloc.navigation_bloc/navigation_bloc.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';
 
 
-class HomePage extends StatelessWidget {
+class HomePage extends StatelessWidget with NavigationStates {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
@@ -36,7 +37,7 @@ class _MyHomePageState extends State<MyHomePage> {
     List<Widget> listItems = [];
     responseList.forEach((post) {
       listItems.add(Container(
-          height: 150,
+          height: 100,
           margin: const EdgeInsets.symmetric(horizontal: 20, vertical: 10),
           decoration: BoxDecoration(borderRadius: BorderRadius.all(Radius.circular(20.0)), color: Colors.white, boxShadow: [
             BoxShadow(color: Colors.black.withAlpha(100), blurRadius: 10.0),
@@ -48,22 +49,23 @@ class _MyHomePageState extends State<MyHomePage> {
               children: <Widget>[
                 Column(
                   crossAxisAlignment: CrossAxisAlignment.start,
+                  //mainAxisAlignment: MainAxisAlignment.center,
                   children: <Widget>[
                     Text(
                       post["name"],
                       style: const TextStyle(fontSize: 28, fontWeight: FontWeight.bold),
                     ),
-                    Text(
-                      post["brand"],
-                      style: const TextStyle(fontSize: 17, color: Colors.grey),
-                    ),
-                    SizedBox(
-                      height: 10,
-                    ),
-                    Text(
-                      "\$ ${post["price"]}",
-                      style: const TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold),
-                    )
+                    // Text(
+                    //   post["brand"],
+                    //   style: const TextStyle(fontSize: 17, color: Colors.grey),
+                    // ),
+                    // SizedBox(
+                    //   height: 10,
+                    // ),
+                    // Text(
+                    //   "\$ ${post["price"]}",
+                     // style: const TextStyle(fontSize: 25, color: Colors.black, fontWeight: FontWeight.bold),
+                    //)
                   ],
                 ),
                 Image.asset(
