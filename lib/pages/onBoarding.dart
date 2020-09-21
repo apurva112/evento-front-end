@@ -53,6 +53,9 @@ class _LoginPageState extends State<LoginPage> {
   // ignore: non_constant_identifier_names
   double pic_opacity = 0;
 
+  TextEditingController userController;
+  TextEditingController passController;
+
   @override
   void initState() {
     super.initState();
@@ -186,7 +189,7 @@ class _LoginPageState extends State<LoginPage> {
                       ),
                     ),
                   ),
-                  Expanded(
+                  SingleChildScrollView(
                     child: Container(
                       padding: EdgeInsets.symmetric(
                           horizontal: 32
@@ -195,6 +198,8 @@ class _LoginPageState extends State<LoginPage> {
                         child: Opacity(
                           opacity: pic_opacity,
                           child: Image.asset("assets/images/1.jpg",
+                            width: MediaQuery.of(context).size.width,
+                            height: MediaQuery.of(context).size.height * 0.5,
                           ),
                         ),
                       ),
@@ -270,11 +275,13 @@ class _LoginPageState extends State<LoginPage> {
                     InputWithIcon(
                       icon: Icons.email,
                       hint: "Enter Email...",
+                      mailController: userController,
                     ),
                     SizedBox(height: 20,),
                     PassWithIcon(
                       icon: Icons.vpn_key,
                       hint: "Enter Password...",
+                      passwordController: passController,
                     )
                   ],
                 ),
@@ -343,11 +350,13 @@ class _LoginPageState extends State<LoginPage> {
                     InputWithIcon(
                       icon: Icons.email,
                       hint: "Enter Email...",
+                      mailController: userController,
                     ),
                     SizedBox(height: 20,),
                     PassWithIcon(
                       icon: Icons.vpn_key,
                       hint: "Enter Password...",
+                      passwordController: passController,
                     )
                   ],
                 ),
@@ -363,6 +372,7 @@ class _LoginPageState extends State<LoginPage> {
                       onTap: () {
                         setState(() {
                           _pageState = 1;
+
                         });
                       },
                       child: OutlineBtn(
@@ -383,13 +393,15 @@ class _LoginPageState extends State<LoginPage> {
 class InputWithIcon extends StatefulWidget {
   final IconData icon;
   final String hint;
-  InputWithIcon({this.icon, this.hint});
+  final TextEditingController mailController;
+  InputWithIcon({this.icon, this.hint, this.mailController});
 
   @override
   _InputWithIconState createState() => _InputWithIconState();
 }
 
 class _InputWithIconState extends State<InputWithIcon> {
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -417,6 +429,7 @@ class _InputWithIconState extends State<InputWithIcon> {
                   border: InputBorder.none,
                   hintText: widget.hint
               ),
+              controller: widget.mailController,
             ),
           )
         ],
@@ -428,13 +441,17 @@ class _InputWithIconState extends State<InputWithIcon> {
 class PassWithIcon extends StatefulWidget {
   final IconData icon;
   final String hint;
-  PassWithIcon({this.icon, this.hint});
+  final TextEditingController passwordController;
+  PassWithIcon({this.icon, this.hint, this.passwordController});
 
   @override
   _PassWithIconState createState() => _PassWithIconState();
 }
 
 class _PassWithIconState extends State<PassWithIcon> {
+
+  //TextEditingController con = TextEditingController();
+
   @override
   Widget build(BuildContext context) {
     return Container(
@@ -464,6 +481,7 @@ class _PassWithIconState extends State<PassWithIcon> {
               ),
               autofocus: false,
               obscureText: true,
+              controller: widget.passwordController,
             ),
           )
         ],
