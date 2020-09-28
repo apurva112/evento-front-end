@@ -2,6 +2,8 @@ import 'package:evento/sidebar/sidebar_layout.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import 'package:keyboard_visibility/keyboard_visibility.dart';
+import 'package:http/http.dart';
+import '../user_model.dart';
 
 
 class MyApp extends StatelessWidget {
@@ -23,6 +25,14 @@ class MyApp extends StatelessWidget {
   }
 }
 
+// ignore: missing_return
+Future<UserModel> createUser(String email, String pass) async
+{
+  final String apiUrl = "";
+
+  //final response = await http.post()
+
+}
 class LoginPage extends StatefulWidget {
   @override
   _LoginPageState createState() => _LoginPageState();
@@ -134,10 +144,10 @@ class _LoginPageState extends State<LoginPage> {
         break;
     }
 
-    return Stack(
-      children: <Widget>[
-        Expanded(
-          child: AnimatedContainer(
+    return Container(
+      child: Stack(
+        children: <Widget>[
+          AnimatedContainer(
               curve: Curves.fastLinearToSlowEaseIn,
               duration: Duration(
                   milliseconds: 1000
@@ -239,9 +249,7 @@ class _LoginPageState extends State<LoginPage> {
                 ],
               )
           ),
-        ),
-        Expanded(
-          child: AnimatedContainer(
+          AnimatedContainer(
             padding: EdgeInsets.all(32),
             width: _loginWidth,
             height: _loginHeight,
@@ -282,7 +290,42 @@ class _LoginPageState extends State<LoginPage> {
                       icon: Icons.vpn_key,
                       hint: "Enter Password...",
                       passwordController: passController,
-                    )
+                    ),
+                    SizedBox(
+                      height: 10,
+                    ),
+                    Align(
+                      alignment: Alignment.topRight,
+                      child: Padding(
+                        padding: const EdgeInsets.all(2.0),
+                        child: Row(
+                          mainAxisAlignment: MainAxisAlignment.end,
+                          children: [
+                            Icon(
+                              Icons.error,
+                              size: 15,
+                            ),
+                            SizedBox(
+                              width: 5,
+                            ),
+                            GestureDetector(
+                              onTap: ()
+                              {
+                                setState(() {
+                                  _pageState = 2;
+                                });
+                              },
+                              child: Text("Forgot Password",
+                                style: TextStyle(
+                                    fontSize: 15,
+                                    color: Colors.grey[700]
+                                ),
+                              ),
+                            ),
+                          ],
+                        ),
+                      ),
+                    ),
                   ],
                 ),
                 Column(
@@ -315,9 +358,7 @@ class _LoginPageState extends State<LoginPage> {
               ],
             ),
           ),
-        ),
-        Expanded(
-          child: AnimatedContainer(
+          AnimatedContainer(
             height: _registerHeight,
             padding: EdgeInsets.all(32),
             curve: Curves.fastLinearToSlowEaseIn,
@@ -362,8 +403,16 @@ class _LoginPageState extends State<LoginPage> {
                 ),
                 Column(
                   children: <Widget>[
-                    PrimaryButton(
-                      btnText: "Create Account",
+                    GestureDetector(
+                      onTap: (){
+                        String name = userController.text;
+                        String pass = passController.text;
+
+                        print(name);
+                      },
+                      child: PrimaryButton(
+                        btnText: "Create Account",
+                      ),
                     ),
                     SizedBox(
                       height: 20,
@@ -383,9 +432,9 @@ class _LoginPageState extends State<LoginPage> {
                 ),
               ],
             ),
-          ),
-        )
-      ],
+          )
+        ],
+      ),
     );
   }
 }

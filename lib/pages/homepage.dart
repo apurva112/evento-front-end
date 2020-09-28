@@ -1,7 +1,9 @@
 import 'package:evento/bloc.navigation_bloc/navigation_bloc.dart';
+import 'package:evento/pages/searchScreen.dart';
 import 'package:flutter/cupertino.dart';
 import 'package:flutter/material.dart';
 import '../constants.dart';
+import 'moreTempltes.dart';
 
 
 class HomePage extends StatelessWidget with NavigationStates {
@@ -91,7 +93,7 @@ class _MyHomePageState extends State<MyHomePage> {
 
       setState(() {
         topContainer = value;
-        closeTopContainer = controller.offset > 50;
+        closeTopContainer = controller.offset > 1;
       });
     });
   }
@@ -123,7 +125,7 @@ class _MyHomePageState extends State<MyHomePage> {
               },
             ),
             IconButton(
-              icon: Icon(Icons.person, color: Colors.black),
+              icon: Icon(Icons.grade, color: Colors.black),
               onPressed: () {
 
               },
@@ -140,9 +142,33 @@ class _MyHomePageState extends State<MyHomePage> {
                   SizedBox(
                     width: 20,
                   ),
-                  Text(
-                    "Evento",
-                    style: TextStyle(color: Colors.grey, fontWeight: FontWeight.bold, fontSize: 40),
+                  // Stack(
+                  //   children: <Widget>[
+                  //     // Stroked text as border.
+                  //     Text(
+                  //       'EVENTO',
+                  //       style: TextStyle(
+                  //         fontSize: 40,
+                  //         foreground: Paint()
+                  //           ..style = PaintingStyle.stroke
+                  //           ..strokeWidth = 4
+                  //           ..color = Colors.blue[700],
+                  //       ),
+                  //     ),
+                  //     // Solid text as fill.
+                  //     Text(
+                  //       'EVENTO',
+                  //       style: TextStyle(
+                  //         fontSize: 40,
+                  //         color: Colors.pinkAccent[300],
+                  //       ),
+                  //     ),
+                  //   ],
+                  // ),
+                  Image.asset(
+                      "assets/images/heading.gif",
+                    height: 87,
+                    width: MediaQuery.of(context).size.width * 0.5,
                   ),
                   SizedBox(
                     width: 50,
@@ -156,7 +182,7 @@ class _MyHomePageState extends State<MyHomePage> {
                       IconButton(
                         icon: Icon(Icons.search),
                         onPressed: (){
-
+                          //Navigator.push(context, MaterialPageRoute(builder: (context) => Search()));
                         },
                       )
                     ],
@@ -167,7 +193,7 @@ class _MyHomePageState extends State<MyHomePage> {
                 height: 10,
               ),
               AnimatedOpacity(
-                duration: const Duration(milliseconds: 200),
+                duration: const Duration(milliseconds: 500),
                 opacity: closeTopContainer?0:1,
                 child: AnimatedContainer(
                     duration: const Duration(milliseconds: 200),
@@ -180,11 +206,11 @@ class _MyHomePageState extends State<MyHomePage> {
                   child: ListView.builder(
                       controller: controller,
                       itemCount: itemsData.length,
-                      physics: BouncingScrollPhysics(),
+                      //physics: BouncingScrollPhysics(),
                       itemBuilder: (context, index) {
                         double scale = 1.0;
                         if (topContainer > 0.5) {
-                          scale = index + 0.5 - topContainer;
+                          scale = index + 0.7 - topContainer;
                           if (scale < 0) {
                             scale = 0;
                           } else if (scale > 1) {
@@ -320,34 +346,40 @@ class CategoriesScroller extends StatelessWidget {
                   ),
                 ),
               ),
-              Container(
-                width: 250,
-                margin: EdgeInsets.only(right: 20),
-                height: categoryHeight,
-                decoration: BoxDecoration(
-                    image: DecorationImage(
-                      image: AssetImage("assets/images/manymore.jpg"),
-                      fit: BoxFit.cover,
-                    ),
-                    borderRadius: BorderRadius.all(Radius.circular(20.0))
-                ),
+              GestureDetector(
+                onTap: ()
+                {
+                  Navigator.push(context, MaterialPageRoute(builder: (context) => MoreTemp()));
+                },
+                child: Container(
+                  width: 250,
+                  margin: EdgeInsets.only(right: 20),
+                  height: categoryHeight,
+                  decoration: BoxDecoration(
+                      image: DecorationImage(
+                        image: AssetImage("assets/images/manymore.jpg"),
+                        fit: BoxFit.cover,
+                      ),
+                      borderRadius: BorderRadius.all(Radius.circular(20.0))
+                  ),
 
-                child: Padding(
-                  padding: const EdgeInsets.all(12.0),
-                  child: Column(
-                    crossAxisAlignment: CrossAxisAlignment.start,
-                    children: <Widget>[
-                      SizedBox(
-                        height: 10,
-                      ),
-                      Text(
-                        "Click\nTo\nContinue",
-                        style: TextStyle(fontSize: 40, color: Colors.white, fontWeight: FontWeight.bold),
-                      ),
-                      SizedBox(
-                        height: 10,
-                      ),
-                    ],
+                  child: Padding(
+                    padding: const EdgeInsets.all(12.0),
+                    child: Column(
+                      crossAxisAlignment: CrossAxisAlignment.start,
+                      children: <Widget>[
+                        SizedBox(
+                          height: 10,
+                        ),
+                        Text(
+                          "Click\nTo\nContinue",
+                          style: TextStyle(fontSize: 40, color: Colors.white, fontWeight: FontWeight.bold),
+                        ),
+                        SizedBox(
+                          height: 10,
+                        ),
+                      ],
+                    ),
                   ),
                 ),
               ),

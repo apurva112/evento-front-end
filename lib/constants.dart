@@ -1,38 +1,26 @@
 const FOOD_DATA = [
   {
-    "name":"Burger",
-    "brand":"Hawkers",
-    "price":2.99,
-    "image":"caterer.jpg"
+    "name":"Photographers",
+    "image":"photog.png"
   },{
-    "name":"Cheese Dip",
-    "brand":"Hawkers",
-    "price":4.99,
-    "image":"cheese_dip.png"
+    "name":"Decorations",
+    "image":"deco.png"
   },
   {
-    "name":"Cola",
-    "brand":"Mcdonald",
-    "price":1.49,
-    "image":"cola.png"
+    "name":"Exciting Djs",
+    "image":"dj.png"
   },
   {
-    "name":"Fries",
-    "brand":"Mcdonald",
-    "price":2.99,
-    "image":"fries.png"
+    "name":"Florists",
+    "image":"florist.png"
   },
   {
-    "name":"Ice Cream",
-    "brand":"Ben & Jerry's",
-    "price":9.49,
-    "image":"ice_cream.png"
+    "name":"Caterers",
+    "image":"catering.png"
   },
   {
-    "name":"Noodles",
-    "brand":"Hawkers",
-    "price":4.49,
-    "image":"noodles.png"
+    "name":"Bakery",
+    "image":"bakery.png"
   },
   {
     "name":"Pizza",
